@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from . models import Menu
+from . models import Menu, Book
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
@@ -11,4 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
+        fields = '__all__'
+        
+class BooKSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
         fields = '__all__'
