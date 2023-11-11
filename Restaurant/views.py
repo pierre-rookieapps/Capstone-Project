@@ -6,13 +6,15 @@ from rest_framework.views import APIView
 from .models import Menu, Book
 from .serializers import MenuSerializer, UserSerializer, BooKSerializer
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html', {})
 
-class UserView(generics.ListAPIView):
+class UserView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -25,6 +27,7 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MenuSerializer
     
 class BookViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Book.objects.all()
     serializer_class = BooKSerializer
     

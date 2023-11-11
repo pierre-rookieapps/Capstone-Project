@@ -23,3 +23,6 @@ class Menu(models.Model):
             MinValueValidator(1)
         ]
     )
+        
+    def __str__(self):
+        return f'{self.title}:{str(self.price)}'
